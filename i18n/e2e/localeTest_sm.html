@@ -1,0 +1,45 @@
+<!document html>
+<html ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>locale test</title>
+    <script src="../../build/angular.js"></script>
+    <script src="../../build/i18n/angular-locale_zh-cn.js"></script>
+    <script>
+      function AppCntl($scope){
+        $scope.input = 234234443432;
+        $scope.plInput = 1;
+        $scope.person1 = "Teuila";
+        $scope.person2 = "Fetu";
+        $scope.plInput2 = 1;
+      }
+    </script>
+  </head>
+  <body ng-controller="AppCntl">
+    <h3>Datetime/Number/Currency filters demo:</h3>
+    <input type="text" ng-model="input"><br>
+    date(medium): {{input | date:"medium"}}<br>
+    date(longDate): {{input | date:"longDate"}}<br>
+    number: {{input | number}}<br>
+    currency: {{input | currency }}
+    <hr/>
+    <h3>Pluralization demo:</h3>
+    <input type="text" ng-model="plInput"><br>
+    <ng-pluralize count="plInput"
+                  when= "{ '0': 'E leai sau imeli!',
+                           'one': 'E tasi lau imeli!',
+                           'other': 'E {} au imeli!'}">
+    </ng-pluralize>
+    <hr/>
+    <h3>Pluralization demo with offsets:</h3>
+    Name of person1:<input type="text" ng-model="person1"/><br/>
+    Name of person2:<input type="text" ng-model="person2"/><br/>
+    <input type="text" ng-model="plInput2"><br>
+    <ng-pluralize count="plInput2" offset=2
+                  when= "{'0':'E leai se tasi o matamata!',
+                          '1': 'Te tilotilo mai {{person1}}!',
+                          '2': 'O lo\ʻo va\ʻava\ʻai {{person1}} ma {{person2}}!',
+                          'other': '{{person1}}, {{person2}} ma le {} isi tagata o matamata!'}">
+    </ng-pluralize>
+  </body>
+</html>
